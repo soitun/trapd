@@ -1,0 +1,4 @@
+trapd
+=====
+
+snmp trap daemon
