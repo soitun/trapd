@@ -38,7 +38,7 @@
  {trapd, [
     {parser_dir, "etc/parsers"},
     {filter_dir, "etc/filters"},
-    {mapper_dir, "etc/parsers"}
+    {mapper_dir, "etc/mappers"}
  ]}
 ].
 

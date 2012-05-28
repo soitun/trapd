@@ -20,6 +20,9 @@ start_link() ->
 	supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 init([]) ->
+	Logger = {trapd_log, {trapd_log, start_link, []},
+        permanent, 5000, worker, [trapd_log]},
+
 	{ok, MapperDir} = application:get_env(mapper_dir),
 	Mapper = {trap_mapper, {trap_mapper, start_link, [MapperDir]},
         permanent, 5000, worker, [trap_mapper]},
@@ -35,6 +38,6 @@ init([]) ->
 	Trapd = {trapd, {trapd, start_link, []},
         permanent, 5000, worker, [trapd]},
 
-	{ok, {{one_for_one, 10, 3600}, [Mapper, Filter, Parser, Trapd]}}.
+	{ok, {{one_for_one, 10, 3600}, [Logger, Mapper, Filter, Parser, Trapd]}}.
 
 

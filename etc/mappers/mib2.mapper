@@ -2,37 +2,41 @@
 
 {mapper, "1.3.6.1.6.3.1.1.5.1", coldStart, [
 	{severity, major},
-	{event_key, "cold start"},
+	{evtkey, "cold start"},
 	{summary, "系统冷启动"}
 ]}.
 
 {mapper, "1.3.6.1.6.3.1.1.5.2", warmStart, [
 	{severity, major},
-	{event_key, "warm start"},
+	{evtkey, "warm start"},
 	{summary, "系统热启动"}
 ]}.
 
 {mapper, "1.3.6.1.6.3.1.1.5.3", linkDown, [
 	{severity, major},
-	{event_key, "ifIndex=$ifIndex"},
+	{evtkey, "ifIndex=$ifIndex"},
 	{summary, "接口 $ifIndex DOWN."}
 ]}.
 
 {mapper, "1.3.6.1.6.3.1.1.5.4", linkUp, [
 	{severity, clear},
-	{event_key, "ifIndex=$ifIndex"},
+	{evtkey, "ifIndex=$ifIndex"},
 	{summary, "接口 $ifIndex UP."}
 ]}.
 
 {mapper, "1.3.6.1.6.3.1.1.5.5", authenticationFailure, [
 	{severity, minor},
-	{event_key, "authenticationFailure"},
+	{evtkey, "authenticationFailure"},
 	{summary, "SNMP访问认证失败警告."}
 ]}.
 
 {mapper, "1.3.6.1.6.3.1.1.5.6", egpNeighborLoss, [
 	{severity, minor},
-	{event_key, "egpNeighborLoss"},
+	{evtkey, "egpNeighborLoss"},
 	{summary, "egp neighbor loss."}
 ]}.
+
+
+
+
 

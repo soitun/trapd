@@ -3,17 +3,31 @@
 %%% Author  : Ery Lee <ery.lee@gmail.com>
 %%% Purpose : trapd header file.
 %%% Created : 21 Feb 2008
-%%% License : http://www.opengoss.com/license
+%%% Updated : 28 May 2012
+%%% License : http://www.opengoss.com
 %%%
-%%% Copyright (C) 2010, www.opengoss.com 
+%%% Copyright (C) 2012, www.opengoss.com 
 %%%----------------------------------------------------------------------
+
 -define(UPTIME, [1,3,6,1,2,1,1,3,0]).
 
 -define(TRAPOID, [1,3,6,1,6,3,1,1,4,1,0]).
 
-%%internal trap message
--record(raw_trap, {addr, trapoid, uptime, timestamp, varbinds}).
+%trap record has been defined by snmp
+-record(trap2, {addr, %agent ipaddr
+			  trapoid, %trapoid
+			  uptime, %uptime
+			  varbinds, %origin varbinds
+			  vars}). %variables after parse
 
-%%trap event sent to trap probe
--record(trap_event, {name, sender, source, type, alarm_key, summary, raised_time, trapoid, variables}).
+-record(event, {name, %event class name 
+				sender, %ipaddr of device
+				source, %event source
+				evtkey, %deduplicate key
+				severity, %severity
+				summary, %event summary
+				timestamp, %event timestamp
+				manager, %manager that generate this event
+				from, %syslog, trap or monitor
+				vars}).
 

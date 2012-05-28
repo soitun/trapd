@@ -18,11 +18,7 @@
 
 -include_lib("snmp/include/snmp_types.hrl").
 
--import(lists, [reverse/1]).
-
--import(extbif, [to_list/1, to_atom/1]).
-
--export([start_link/1, lookup/1, update/1, parse/2]).
+-export([start_link/1, parse/1]).
 
 -behavior(gen_server).
 
@@ -33,61 +29,46 @@
         terminate/2,
         code_change/3]).
 
-%%--------------------------------------------------------------------
-%% Function: start_link() -> {ok,Pid} | ignore | {error,Error}
-%% Description: Starts the server
-%%--------------------------------------------------------------------
 start_link(Dir) ->
     gen_server2:start_link({local, ?MODULE}, ?MODULE, [Dir], []).
 
-parse(TrapOid, RawTrap) ->
-    gen_server2:cast(?MODULE, {parse, TrapOid, RawTrap}).
+parse(Trap) ->
+    gen_server2:cast(?MODULE, {parse, Trap}).
 
-%%--------------------------------------------------------------------
-%% Function: init(Args) -> {ok, State} |
-%%                         {ok, State, Timeout} |
-%%                         ignore               |
-%%                         {stop, Reason}
-%% Description: Initiates the server
-%%--------------------------------------------------------------------
 init([Dir]) ->
-    {ok, ParserFiles} = file:list_dir(Dir),
+	put(parsed, 0),
     ets:new(trap_vardef, [set, named_table]),
     ets:new(trap_parser, [set, named_table]),
 	LoadFun = fun(File) -> 
-        case lists:suffix(".parser", File) of
-        true -> 
-            ?INFO("load parser file: ~p", [File]),
-            case file:consult(filename:join(Dir, File)) of 
-            {ok, Terms} ->
-                lists:foreach(
-                    fun({vardef, VarOid, Name, Type}) -> 
-                        ets:insert(trap_vardef, {VarOid, Name, Type});
-                       ({parser, TrapOid, VarDefs}) ->
-                        ets:insert(trap_parser, {TrapOid, VarDefs})
-                end, Terms);
-            {error, Reason} ->
-                ?ERROR("Can't load trap parser file ~p : ~p", [File, Reason])
-            end;
-        false ->
-            ignore
-        end
+		?INFO("load parser file: ~p", [File]),
+		case file:consult(filename:join(Dir, File)) of 
+		{ok, Terms} -> 
+			lists:foreach(fun store/1, Terms);
+		{error, Reason} -> 
+			?ERROR("Can't load parser file ~p : ~p", [File, Reason])
+		end
     end,
-    lists:foreach(LoadFun, ParserFiles),
+    lists:foreach(LoadFun, trapd_misc:list_file(Dir, ".parser")),
+    ?INFO("~p is starting...[ok]", [?MODULE]),
     {ok, state}.
 
-handle_call(Req, _From, State) ->
-    ?ERROR("unexpected request: ~p", [Req]),
-    {reply, {error, unexpected_req}, State}.
+store({vardef, VarOid, Name, Type}) -> 
+	ets:insert(trap_vardef, {VarOid, Name, Type});
 
-handle_cast({parse, #raw_trap{trapoid = TrapOid} = RawTrap}, State) ->
+store({parser, TrapOid, VarDefs}) ->
+	ets:insert(trap_parser, {TrapOid, VarDefs}).
+
+handle_call(Req, _From, State) ->
+    {stop, {error, {badreq, Req}}, State}.
+
+handle_cast({parse, #trap2{trapoid = TrapOid} = Trap}, State) ->
 	VarDefs = 
     case ets:lookup(trap_parser, TrapOid) of
     [{_, Defs}] -> Defs;
     [] -> []
     end,
-	Tokens = do_parse(RawTrap, VarDefs),
-	trap_filter:filter(TrapOid, Tokens),
+	NewTrap = do_parse(Trap, VarDefs),
+	trap_filter:filter(NewTrap),
 	{noreply, State};
 
 handle_cast(Msg, State) ->
@@ -102,26 +83,23 @@ terminate(_Reason, _State) ->
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
 
-do_parse(#raw_trap{addr=Addr, trapoid=TrapOid, timestamp = Timestamp, uptime=UpTime, varbinds=Varbinds} = RawTrap, VarDefs) ->
-	Tokens = [{'sender', Addr}, 
-			  {'timestamp', Timestamp}, 
-			  {'upTime', UpTime}, 
-			  {'trapOid', TrapOid}], 
-	VarTokens = parse_vars(Varbinds, VarDefs),
-	lists:append([Tokens, VarTokens]).
+do_parse(#trap2{addr = Addr, trapoid = TrapOid, 
+	uptime = Uptime, varbinds = Varbinds} = Trap, VarDefs) ->
+	Vars = parse_vars(Varbinds, VarDefs),
+	Trap#trap2{vars = [{sender,Addr},{trapoid,TrapOid},{uptime,Uptime}|Vars]}.
 
 parse_vars(Varbinds, VarDefs) ->
 	Len = length(Varbinds),
 	Vars = 
 	lists:map(fun(Idx) -> 
 		Vb = lists:nth(Idx, Varbinds),
-        VarOid = oid2str(Vb#varbind.oid),
+        VarOid = mib_oid:to_str(Vb#varbind.oid),
 		%VarType = Vb#varbind.variabletype,
         VarVal = Vb#varbind.value,
 		Var = 
 		case find_vardef(Idx, VarOid, VarDefs) of
 		{Name, Type} ->
-			Val = format(Type, Val),
+			Val = format(Type, VarVal),
 			[{Name, Val}, {idx_var(Idx), Val}];
 		false ->
 			[{idx_var(Idx), VarVal}]
@@ -164,44 +142,8 @@ format(string, Val) ->
     Val;
 
 format(mac, Val) ->
-    string:to_upper(macaddr(Val));
+    string:to_upper(trapd_misc:macaddr(Val));
 
 format(ip, Val) ->
-    ipaddr(Val).
-
-oid2str(Oid) ->
-    string:join([integer_to_list(I) || I <- Oid], ".").
-
-macaddr(L) when is_list(L) and (length(L) == 6) ->
-	L1 = io_lib:format("~.16B~.16B~.16B~.16B~.16B~.16B", L),
-    L2 = lists:map(fun(C) -> 
-        case length(C) of
-            2 -> C;
-            1 -> "0" ++ C
-        end
-    end, L1),
-    string:join(L2, ":");
-
-macaddr(L) when is_list(L) ->
-    L;
-
-macaddr(L) ->
-    io:format("invalid mac: ~p", [L]),
-	"".
-
-ipaddr(I) when is_integer(I) ->
-    A = (I bsr 24) band 16#FF,
-    B = (I bsr 16) band 16#FF,
-    C = (I bsr 8) band 16#FF,
-    D = (I) band 16#FF,
-    ipaddr([A,B,C,D]);
-
-ipaddr(L) when is_list(L) and (length(L) == 4)->
-	string:join(io_lib:format("~.10B~.10B~.10B~.10B", L), ".");
-
-ipaddr(L) when is_list(L) ->
-    L;
-
-ipaddr(_) ->
-    "".
+    trapd_misc:ipaddr(Val).
 

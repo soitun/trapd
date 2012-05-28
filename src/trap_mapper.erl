@@ -15,9 +15,9 @@
 
 -include_lib("elog/include/elog.hrl").
 
--include_lib("snmp/include/snmp_types.hrl").
-
--export([start_link/1, mapping/2]).
+-export([start_link/1,
+		lookup/1,
+		mapping/1]).
 
 -behavior(gen_server).
 
@@ -28,55 +28,51 @@
         terminate/2,
         code_change/3]).
 
-%%--------------------------------------------------------------------
-%% Function: start_link() -> {ok,Pid} | ignore | {error,Error}
-%% Description: Starts the server
-%%--------------------------------------------------------------------
+-record(mapper, {trapoid, rule, name, attrs}).
+
 start_link(Dir) ->
     gen_server2:start_link({local, ?MODULE}, ?MODULE, [Dir], []).
 
-mapping(TrapOid, Tokens) ->
-    gen_server2:cast(?MODULE, {mapping, TrapOid, Tokens}).
+lookup(Oid) ->
+	ets:lookup(trap_mapper, Oid).
 
-%%--------------------------------------------------------------------
-%% Function: init(Args) -> {ok, State} |
-%%                         {ok, State, Timeout} |
-%%                         ignore               |
-%%                         {stop, Reason}
-%% Description: Initiates the server
-%%--------------------------------------------------------------------
+mapping(Trap) ->
+    gen_server2:cast(?MODULE, {mapping, Trap}).
+
 init([Dir]) ->
-    {ok, MapperFiles} = file:list_dir(Dir),
-    ets:new(trap_mapper, [set, named_table]),
-    lists:foreach(fun(File) -> 
-        case lists:suffix(".mapper", File) of
-        true -> 
-            ?INFO("load mapper file: ~p", [File]),
-            case file:consult(filename:join(Dir, File)) of 
-            {ok, Terms} ->
-                lists:foreach(fun({mapper, Oid, Name, Attrs}) -> 
-					ets:insert(trap_mapper, {Oid, Name, Attrs})
-                end, Terms);
-            {error, Reason} ->
-                ?ERROR("Can't load trap mapper file ~p : ~p", [File, Reason])
-            end;
-        false ->
-            ignore
-        end
-    end, MapperFiles),
+	put(mapped, 0),
+    ets:new(trap_mapper, [bag, protected, named_table, {keypos, 2}]),
+    LoadFun = fun(File) -> 
+		?INFO("load mapper file: ~p", [File]),
+		case file:consult(filename:join(Dir, File)) of 
+		{ok, Terms} ->
+			lists:foreach(fun store/1, Terms);
+		{error, Reason} ->
+			?ERROR("Can't load trap mapper file ~p : ~p", [File, Reason])
+		end
+    end,
+	lists:foreach(LoadFun, trapd_misc:list_file(Dir, ".mapper")),
+	?INFO("~p is starting...[ok]", [?MODULE]),
     {ok, state}.
+
+store({mapper, Oid, Name, Attrs}) -> 
+	ets:insert(trap_mapper, #mapper{trapoid=Oid, name=Name, attrs=Attrs});
+
+store({mapper, Oid, Rule, Name, Attrs}) ->
+	RuleExp = prefix_exp:parse(Rule),
+	ets:insert(trap_mapper, #mapper{trapoid=Oid, rule=RuleExp, name=Name, attrs=Attrs}).
 
 handle_call(Req, _From, State) ->
     {stop, {error, {badreq, Req}}, State}.
 
-handle_cast({mapping, TrapOid, Tokens}, State) ->
-    case ets:lookup(trap_mapper, TrapOid) of
-    [Mapper] ->
-		Event = mapping(Mapper, Tokens),
-		trapd:emit(Event);
-    [] -> 
-        ?WARNING("no mapper for: ~p", [TrapOid]),
-    end;
+handle_cast({mapping, #trap2{trapoid = TrapOid} = Trap}, State) ->
+    Mappers = ets:lookup(trap_mapper, TrapOid),
+	case find_mapper(Trap, Mappers) of
+	false ->
+		trapd_log:log(dropped, {no_mapper, Trap});
+	{ok, Mapper} ->
+		trapd:emit(mapping(Mapper, Trap))
+	end,
 	{noreply, State};
 
 handle_cast(Msg, State) ->
@@ -91,23 +87,46 @@ terminate(_Reason, _State) ->
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
 
-mapping({Name, Attrs}, Tokens) ->
-	{Name, attr_map(Attrs, Tokens)}.
+find_mapper(_, []) ->
+	false;
+find_mapper(#trap2{trapoid = TrapOid, vars = Vars}, Mappers) ->
+	Matched = 
+	lists:filter(fun(#mapper{rule=Rule}) -> 
+		(Rule == undefined) or prefix_exp:eval(Rule, Vars)
+	end, Mappers),
+	case Matched of
+	[] -> 
+		false;
+	[Mapper] -> 
+		{ok, Mapper};
+	[Mapper|_] -> 
+		?WARNING("more than one mapper for ~p", [TrapOid]),
+		{ok, Mapper}
+	end.
 
-attr_map(Attrs, Tokens) ->
-	attr_map(Attrs, Tokens, []).
+mapping(#mapper{name=Name, attrs=Attrs}, #trap2{addr = Addr, vars = Vars}) ->
+	Event = #event{name = Name, sender = Addr, vars = Vars},
+	attr_map(Attrs, Vars, Event).
 
-attr_map([], _Tokens, Acc) ->
-	Acc;
+attr_map([], _Vars, Event) ->
+	Event;
 
-attr_map([{severity, Severity} | Attrs], Tokens, Acc) ->
-	attr_map(Attrs, Tokens, [{severity, Severity}|Acc]);
+attr_map([{severity, Severity}|Attrs], Vars, Event) ->
+	attr_map(Attrs, Vars, Event#event{severity = Severity});
 
-attra_map([{summary, SumDef} | Attrs], Tokens, Acc) ->
-	Summary = varstr:eval(SumDef, Tokens),
-	attr_map(Attrs, Tokens, [{summary, Summary}|Acc]);
+attr_map([{source, Def}|Attrs], Vars, Event) ->
+	Source = varstr:eval(Def, Vars),
+	attr_map(Attrs, Vars, Event#event{source = Source});
 
-attra_map([{event_key, KeyDef} | Attrs], Tokens, Acc) ->
-	EventKey = varstr:eval(KeyDef, Tokens),
-	attr_map(Attrs, Tokens, [{event_key, EventKey}|Acc]);
+attr_map([{evtkey, Def} | Attrs], Vars, Event) ->
+	EvtKey = varstr:eval(Def, Vars),
+	attr_map(Attrs, Vars, Event#event{evtkey = EvtKey});
+
+attr_map([{summary, Def} | Attrs], Vars, Event) ->
+	Summary = varstr:eval(Def, Vars),
+	attr_map(Attrs, Vars, Event#event{summary = Summary});
+
+attr_map([Attr | Attrs], Vars, Event) ->
+	?WARNING("ignore ~p", [Attr]),
+	attr_map(Attrs, Vars, Event).
 
