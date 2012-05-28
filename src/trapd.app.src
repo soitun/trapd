@@ -5,11 +5,13 @@
              trapd_app,
              trapd_sup,
 			 trapd_ctl,
-             trapd_parser,
-			 trapd_filter,
-			 trapd_mapper,
-			 trapd_emitter]},
+			 trapd_log,
+			 trapd_misc,
+             trap_parser,
+			 trap_filter,
+			 trap_mapper]},
   {registered, [trapd]},
   {applications, [kernel, stdlib]},
   {env, []},
   {mod, {trapd_app, []}}]}.
+
