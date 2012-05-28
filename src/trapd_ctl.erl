@@ -23,8 +23,11 @@ status() ->
         ?PRINT("trapd is not running~n", []);
     {value,_Version} ->
         ?PRINT("trapd is running~n", [])
-    end,
-    ?PRINT("trapd status: ~p ~n", [trapd:status()]).
+    end.
+
+info() ->
+	Stats = [Mod:stats() || Mod <- [trapd, trap_mapper, trap_filter, trap_parser]],
+	?PRINT("~p~n", [lists:flatten(Stats)]).
 
 received_trap() ->
     ets_print(received_trap).

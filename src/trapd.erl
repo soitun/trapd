@@ -21,14 +21,15 @@
 
 -include_lib("snmp/include/snmp_types.hrl").
 
-%% api
--export([start_link/0, emit/1]).
+-export([start_link/0,
+		stats/0,
+		emit/1]).
 
 -behaviour(gen_server).
 
-%% gen_server callbacks
 -export([init/1, 
         handle_call/3, 
+		prioritise_call/3,
         handle_cast/2, 
         handle_info/2, 
         prioritise_info/2,
@@ -48,10 +49,15 @@
 start_link() ->
     gen_server2:start_link({local, ?SERVER}, ?MODULE, [], []).
 
+stats() ->
+	gen_server2:call(?MODULE, stats).
+
 emit(Event) ->
 	gen_server2:cast(?SERVER, {emit, Event}).
 
 init([]) ->
+	put(received, 0),
+	put(emitted, 0),
 	{ok, Conn} = amqp:connect(),
     Channel = open(Conn),
     ?INFO("trapd is starting...[ok]", []),
@@ -75,21 +81,24 @@ open(Conn) ->
 	send_after(10000, self(), heartbeat),
 	Channel.
 
-%%--------------------------------------------------------------------
-%% Function: %% handle_call(Request, From, State) -> {reply, Reply, State} |
-%%                                      {reply, Reply, State, Timeout} |
-%%                                      {noreply, State} |
-%%                                      {noreply, State, Timeout} |
-%%                                      {stop, Reason, Reply, State} |
-%%                                      {stop, Reason, State}
-%% Description: Handling call messages
-%%--------------------------------------------------------------------
+handle_call(stats, _From, State) ->
+	Rep = [{received, get(received)}, {emitted, get(emitted)}],
+	{reply, Rep, State};
+
 handle_call(Req, _From, State) ->
     {stop, {error, {badreq, Req}}, State}.
 
+prioritise_call(stats, _From, _State) ->
+	10;
+prioritise_call(_, _From, _State) ->
+	0.
+	
 handle_cast({emit, #event{name = Name} = Event}, #state{channel = Chan} = State) ->
 	NewEvent = enrich(Event),
-	trapd_log:log(emitted, NewEvent),
+	?DEBUG("emit event: ~p", [Name]),
+	?DEBUG("~p", [NewEvent]),
+	put(emitted, get(emitted)+1),
+	%trapd_log:log(emitted, NewEvent),
 	Key = "event." ++ atom_to_list(Name),
 	amqp:publish(Chan, <<"oss.event">>, term_to_binary(NewEvent), Key),
 	{noreply, State};
@@ -98,6 +107,7 @@ handle_cast(Msg, State) ->
     {stop, {error, {badmsg, Msg}}, State}.
 
 handle_info({trap, Trap}, State) ->
+	put(received, get(received)+1),
 	trapd_log:log(received, Trap),
 	trap_parser:parse(Trap),
 	{noreply, State};

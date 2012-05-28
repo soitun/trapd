@@ -76,9 +76,9 @@ case "$1" in
         $NODETOOL rpc trapd_ctl status $@
         ;;
 
-    received_trapoid)
+    info)
         if [ $# -ne 1 ]; then
-            echo "Usage: $SCRIPT status"
+            echo "Usage: $SCRIPT info"
             exit 1
         fi
 
@@ -90,12 +90,12 @@ case "$1" in
         fi
         shift
 
-        $NODETOOL rpc trapd_ctl received_trapoid $@
+        $NODETOOL rpc trapd_ctl info $@
         ;;
 
-    emitted_trapoid)
+    received_trap)
         if [ $# -ne 1 ]; then
-            echo "Usage: $SCRIPT status"
+            echo "Usage: $SCRIPT received_trap"
             exit 1
         fi
 
@@ -107,12 +107,12 @@ case "$1" in
         fi
         shift
 
-        $NODETOOL rpc trapd_ctl emitted_trapoid $@
+        $NODETOOL rpc trapd_ctl received_trap $@
         ;;
 
-    dropped_trapoid)
+    emitted_trap)
         if [ $# -ne 1 ]; then
-            echo "Usage: $SCRIPT status"
+            echo "Usage: $SCRIPT emitted_trap"
             exit 1
         fi
 
@@ -124,10 +124,45 @@ case "$1" in
         fi
         shift
 
-        $NODETOOL rpc trapd_ctl dropped_trapoid $@
+        $NODETOOL rpc trapd_ctl emitted_trap $@
+        ;;
+
+    dropped_trap)
+        if [ $# -ne 1 ]; then
+            echo "Usage: $SCRIPT dropped_trap"
+            exit 1
+        fi
+
+        # Make sure the local node IS running
+        RES=`$NODETOOL ping`
+        if [ "$RES" != "pong" ]; then
+            echo "Node is not running!"
+            exit 1
+        fi
+        shift
+
+        $NODETOOL rpc trapd_ctl dropped_trap $@
+        ;;
+
+    filtered_trap)
+        if [ $# -ne 1 ]; then
+            echo "Usage: $SCRIPT filtered_trap"
+            exit 1
+        fi
+
+        # Make sure the local node IS running
+        RES=`$NODETOOL ping`
+        if [ "$RES" != "pong" ]; then
+            echo "Node is not running!"
+            exit 1
+        fi
+        shift
+
+        $NODETOOL rpc trapd_ctl filtered_trap $@
         ;;
     *)
-        echo "Usage: $SCRIPT {status | received_trapoid | emitted_trapoid | dropped_trapoid}"
+        echo "Usage: $SCRIPT {status | info | received_trap | emitted_trap | dropped_trap | filtered_trap}"
         exit 1
         ;;
 esac
+

@@ -15,7 +15,7 @@
 
 -include_lib("elog/include/elog.hrl").
 
--export([start_link/1, filter/1]).
+-export([start_link/1, stats/0, filter/1]).
 
 -record(state, {}).
 
@@ -23,6 +23,7 @@
 
 -export([init/1,
         handle_call/3,
+		prioritise_call/3,
         handle_cast/2,
         handle_info/2,
         terminate/2,
@@ -30,6 +31,9 @@
 
 start_link(Dir) ->
     gen_server2:start_link({local, ?MODULE}, ?MODULE, [Dir], []).
+
+stats() ->
+	gen_server2:call(?MODULE, stats).
 
 filter(Trap) ->
 	gen_server2:cast(?MODULE, {filter, Trap}).
@@ -50,8 +54,17 @@ init([Dir]) ->
 	?INFO("~p is starting...[ok]", [?MODULE]),
     {ok, #state{}}.
 
+handle_call(stats, _From, State) ->
+	Rep = [{filtered, get(filtered)}],
+	{reply, Rep, State};
+
 handle_call(Req, _From, State) ->
     {stop, {error, {badreq, Req}}, State}.
+
+prioritise_call(stats, _From, _State) ->
+	10;
+prioritise_call(_, _From, _State) ->
+	0.
 
 handle_cast({filter, Trap}, State) ->
 	case do_filter(ets:first(trap_filter), tokens(Trap)) of

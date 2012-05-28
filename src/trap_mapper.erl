@@ -16,6 +16,7 @@
 -include_lib("elog/include/elog.hrl").
 
 -export([start_link/1,
+		stats/0,
 		lookup/1,
 		mapping/1]).
 
@@ -23,6 +24,7 @@
 
 -export([init/1, 
         handle_call/3, 
+		prioritise_call/3,
         handle_cast/2, 
         handle_info/2, 
         terminate/2,
@@ -33,6 +35,9 @@
 start_link(Dir) ->
     gen_server2:start_link({local, ?MODULE}, ?MODULE, [Dir], []).
 
+stats() ->
+	gen_server2:call(?MODULE, stats).
+
 lookup(Oid) ->
 	ets:lookup(trap_mapper, Oid).
 
@@ -41,6 +46,7 @@ mapping(Trap) ->
 
 init([Dir]) ->
 	put(mapped, 0),
+	put(dropped, 0),
     ets:new(trap_mapper, [bag, protected, named_table, {keypos, 2}]),
     LoadFun = fun(File) -> 
 		?INFO("load mapper file: ~p", [File]),
@@ -62,15 +68,27 @@ store({mapper, Oid, Rule, Name, Attrs}) ->
 	RuleExp = prefix_exp:parse(Rule),
 	ets:insert(trap_mapper, #mapper{trapoid=Oid, rule=RuleExp, name=Name, attrs=Attrs}).
 
+handle_call(stats, _From, State) ->
+	Rep = [{mapped, get(mapped)}, {dropped, get(dropped)}],
+	{reply, Rep, State};
+
 handle_call(Req, _From, State) ->
     {stop, {error, {badreq, Req}}, State}.
+
+prioritise_call(stats, _From, _State) ->
+	10;
+prioritise_call(_, _From, _State) ->
+	0.
 
 handle_cast({mapping, #trap2{trapoid = TrapOid} = Trap}, State) ->
     Mappers = ets:lookup(trap_mapper, TrapOid),
 	case find_mapper(Trap, Mappers) of
 	false ->
+		put(dropped, get(dropped)+1),
 		trapd_log:log(dropped, {no_mapper, Trap});
 	{ok, Mapper} ->
+		put(mapped, get(mapped)+1),
+		trapd_log:log(emitted, Trap),
 		trapd:emit(mapping(Mapper, Trap))
 	end,
 	{noreply, State};
@@ -90,9 +108,10 @@ code_change(_OldVsn, State, _Extra) ->
 find_mapper(_, []) ->
 	false;
 find_mapper(#trap2{trapoid = TrapOid, vars = Vars}, Mappers) ->
-	Matched = 
-	lists:filter(fun(#mapper{rule=Rule}) -> 
-		(Rule == undefined) or prefix_exp:eval(Rule, Vars)
+	Matched =
+	lists:filter(
+		fun(#mapper{rule=undefined}) -> true;
+		   (#mapper{rule=Rule}) -> prefix_exp:eval(Rule, Vars)
 	end, Mappers),
 	case Matched of
 	[] -> 

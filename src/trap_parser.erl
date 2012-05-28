@@ -18,12 +18,15 @@
 
 -include_lib("snmp/include/snmp_types.hrl").
 
--export([start_link/1, parse/1]).
+-export([start_link/1,
+		stats/0,
+		parse/1]).
 
 -behavior(gen_server).
 
 -export([init/1, 
         handle_call/3, 
+		prioritise_call/3,
         handle_cast/2, 
         handle_info/2, 
         terminate/2,
@@ -31,6 +34,9 @@
 
 start_link(Dir) ->
     gen_server2:start_link({local, ?MODULE}, ?MODULE, [Dir], []).
+
+stats() ->
+	gen_server2:call(?MODULE, stats).
 
 parse(Trap) ->
     gen_server2:cast(?MODULE, {parse, Trap}).
@@ -58,10 +64,20 @@ store({vardef, VarOid, Name, Type}) ->
 store({parser, TrapOid, VarDefs}) ->
 	ets:insert(trap_parser, {TrapOid, VarDefs}).
 
+handle_call(stats, _From, State) ->
+	Rep = [{parsed, get(parsed)}],
+	{reply, Rep, State};
+
 handle_call(Req, _From, State) ->
     {stop, {error, {badreq, Req}}, State}.
 
+prioritise_call(stats, _From, _State) ->
+	10;
+prioritise_call(_, _From, _State) ->
+	0.
+
 handle_cast({parse, #trap2{trapoid = TrapOid} = Trap}, State) ->
+	put(parsed, get(parsed) + 1),
 	VarDefs = 
     case ets:lookup(trap_parser, TrapOid) of
     [{_, Defs}] -> Defs;
@@ -106,7 +122,7 @@ parse_vars(Varbinds, VarDefs) ->
 		end,
 		[{oid_var(Idx), VarOid}|Var]
 	end, lists:seq(1, Len)),
-	list:reverse(list:sort(lists:flatten(Vars))).
+	lists:reverse(lists:sort(lists:flatten(Vars))).
 
 find_vardef(Idx, VarOid, VarDefs) ->
 	case lists:keysearch(Idx, 1, VarDefs) of
