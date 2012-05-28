@@ -1,0 +1,12 @@
+% #parser{trapoid, varbinds}
+
+%linkup
+{parser, "1.3.6.1.6.3.1.1.5.3", [
+	{1, ifIndex, integer}
+]}.
+
+%linkdown
+{parser, "1.3.6.1.6.3.1.1.5.4", [
+	{1, ifIndex, integer}
+]}.
+

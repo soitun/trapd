@@ -1,0 +1,13 @@
+
+    {{'OBJECT IDENTIFIER', Value}, Rest};
+    {{'NULL', 'NULL'}, T};
+    {{'INTEGER', Value}, Rest};
+    {{'OCTET STRING', Value}, Rest};
+    {{'IpAddress', Value}, Rest};
+    {{'Counter32', Value2}, Rest};
+	{{'Unsigned32', Value}, Rest};
+	{{'TimeTicks', Value}, Rest};
+    {{'Opaque', Value}, Rest};
+    {{'Counter64', Value2}, Rest};
+    {{'NULL', noSuchObject}, T};
+    {{'NULL', endOfMibView}, T}.

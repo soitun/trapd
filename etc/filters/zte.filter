@@ -1,0 +1,10 @@
+%WLAN_STA_ONLINE
+{'=', '$trapoid', "1.3.6.1.4.1.3902.1.3.17"}.
+%WLAN_STA_OFFLINE
+{'=', '$trapoid', "1.3.6.1.4.1.3902.1.3.18"}.
+%COLDSTARTRecov
+{'=', '$trapoid', "1.3.6.1.4.1.3902.1.3.3"}.
+%WlanPortErrorClear
+{'=', '$trapoid', "1.3.6.1.4.1.3902.1.3.14"}.
+
+
