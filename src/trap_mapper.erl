@@ -123,8 +123,12 @@ find_mapper(#trap2{trapoid = TrapOid, vars = Vars}, Mappers) ->
 		{ok, Mapper}
 	end.
 
-mapping(#mapper{name=Name, attrs=Attrs}, #trap2{addr = Addr, vars = Vars}) ->
-	Event = #event{name = Name, sender = Addr, vars = Vars},
+mapping(#mapper{name=Name, attrs=Attrs}, 
+		#trap2{addr = Addr, trapoid = TrapOid, vars = Vars}) ->
+	Event = #event{name = Name,
+				   sender = Addr,
+				   trapoid = TrapOid,
+				   vars = Vars},
 	attr_map(Attrs, Vars, Event).
 
 attr_map([], _Vars, Event) ->

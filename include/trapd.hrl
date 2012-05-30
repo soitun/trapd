@@ -29,5 +29,6 @@
 				timestamp, %event timestamp
 				manager, %manager that generate this event
 				from, %syslog, trap or monitor
+				trapoid, 
 				vars}).
 
