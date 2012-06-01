@@ -101,28 +101,27 @@ code_change(_OldVsn, State, _Extra) ->
 
 do_parse(#trap2{addr = Addr, trapoid = TrapOid, 
 	uptime = Uptime, varbinds = Varbinds} = Trap, VarDefs) ->
-	Vars = parse_vars(Varbinds, VarDefs),
-	Trap#trap2{vars = [{sender,Addr},{trapoid,TrapOid},{uptime,Uptime}|Vars]}.
+	{Vars, IdxVars, OidVars} = parse_vars(Varbinds, VarDefs),
+	AllVars = lists:append([Vars, lists:reverse(IdxVars), lists:reverse(OidVars)]),
+	Trap#trap2{vars = [{sender,Addr},{trapoid,TrapOid},{uptime,Uptime}|AllVars]}.
 
 parse_vars(Varbinds, VarDefs) ->
 	Len = length(Varbinds),
-	Vars = 
-	lists:map(fun(Idx) -> 
+	lists:foldl(fun(Idx, {Vars, IdxVars, OidVars}) ->
 		Vb = lists:nth(Idx, Varbinds),
         VarOid = mib_oid:to_str(Vb#varbind.oid),
 		%VarType = Vb#varbind.variabletype,
         VarVal = Vb#varbind.value,
-		Var = 
+		{NewVars, NewIdxVars} = 
 		case find_vardef(Idx, VarOid, VarDefs) of
 		{Name, Type} ->
 			Val = format(Type, VarVal),
-			[{Name, Val}, {idx_var(Idx), Val}];
+			{[{Name, Val} | Vars],  [{idx_var(Idx), Val}|IdxVars]};
 		false ->
-			[{idx_var(Idx), VarVal}]
+			{Vars, [{idx_var(Idx), VarVal}|IdxVars]}
 		end,
-		[{oid_var(Idx), VarOid}|Var]
-	end, lists:seq(1, Len)),
-	lists:reverse(lists:sort(lists:flatten(Vars))).
+		{NewVars, NewIdxVars, [{oid_var(Idx), VarOid}|OidVars]}
+	end, {[], [], []}, lists:seq(1, Len)).
 
 find_vardef(Idx, VarOid, VarDefs) ->
 	case lists:keysearch(Idx, 1, VarDefs) of
