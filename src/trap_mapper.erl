@@ -126,7 +126,7 @@ find_mapper(#trap2{trapoid = TrapOid, vars = Vars}, Mappers) ->
 mapping(#mapper{name=Name, attrs=Attrs}, 
 		#trap2{addr = Addr, trapoid = TrapOid, vars = Vars}) ->
 	Event = #event{name = Name,
-				   sender = Addr,
+				   sender = {ip, Addr},
 				   trapoid = TrapOid,
 				   vars = Vars},
 	attr_map(Attrs, Vars, Event).
@@ -137,7 +137,11 @@ attr_map([], _Vars, Event) ->
 attr_map([{severity, Severity}|Attrs], Vars, Event) ->
 	attr_map(Attrs, Vars, Event#event{severity = Severity});
 
-attr_map([{source, Def}|Attrs], Vars, Event) ->
+attr_map([{source, {Type, Def}}|Attrs], Vars, Event) ->
+	Source = {Type, varstr:eval(Def, Vars)},
+	attr_map(Attrs, Vars, Event#event{source = Source});
+
+attr_map([{source, Def}|Attrs], Vars, Event) when is_list(Def) ->
 	Source = varstr:eval(Def, Vars),
 	attr_map(Attrs, Vars, Event#event{source = Source});
 
