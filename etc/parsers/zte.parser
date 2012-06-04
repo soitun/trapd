@@ -1,0 +1,330 @@
+%%%-----------------------------------------------------------------------------
+%%%comba trap 
+%%%-----------------------------------------------------------------------------
+{parser, "1.3.6.1.4.1.3902.1.30.70", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    {11, cpuUsage, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.71", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    {11, cpuUsage, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.72", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    {11, memUsage, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.73", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    {11, memUsage, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.23", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.24", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.76", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.9", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.78", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    %{11, radio, integer},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.172", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    %{11, radio, integer},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.173", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    %{11, radio, integer},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.11", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    %{11, radio, integer},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.79", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    %{11, radio, integer},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.4", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    %{11, radio, integer},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.80", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    %{11, radio, integer},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.83", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    %{11, radio, integer},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.84", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    %{11, radio, integer},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.87", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.88", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.25", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string},
+    {11, radio, string},
+    {12, channel, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.92", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.93", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.100", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.101", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.102", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.103", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.104", [
+	{1, alarmId, string}, 
+    {7, alarmTitle, string},
+    {8, alarmCause, string},
+    {9, apmac, string}, 
+    {10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.158", [
+	{10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.157", [
+	{10, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.49", [
+	{1, alarmId, string}, 
+    {9, alarmCause, string},
+    {10, cpuUsage, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.50", [
+	{1, alarmId, string}, 
+    {9, alarmCause, string},
+    {10, cpuUsage, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.51", [
+	{1, alarmId, string}, 
+    {9, alarmCause, string},
+    {10, memUsage, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.52", [
+	{1, alarmId, string}, 
+    {9, alarmCause, string},
+    {10, memUsage, integer}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.55", [
+	{1, alarmId, string}, 
+    {9, dhcpName, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.56", [
+	{1, alarmId, string}, 
+    {9, dhcpName, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.33", [
+	{9, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.3", [
+	{8, alarmTitle, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.19", [
+	{10, server, ip},
+    {11, port, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.21",[
+	{10, server, ip},
+    {11, port, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.20", [
+	{10, server, ip},
+    {11, port, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.22", [
+	{10, server, ip},
+    {11, port, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.30", [
+	{10, server, ip}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.58", [
+	{10, server, ip}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.29", [
+	{9, alarmAdditionalInfo, string}
+]}.
+
+{parser, "1.3.6.1.4.1.3902.1.30.43", [
+	{9, alarmAdditionalInfo, string},
+    {10, apmac, string}
+]}.

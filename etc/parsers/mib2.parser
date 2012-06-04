@@ -1,12 +1,8 @@
-% #parser{trapoid, varbinds}
-
-%linkup
+%%mib2 trap parser
 {parser, "1.3.6.1.6.3.1.1.5.3", [
-	{1, ifIndex, integer}
+	{1, ifindex, integer}
 ]}.
 
-%linkdown
 {parser, "1.3.6.1.6.3.1.1.5.4", [
-	{1, ifIndex, integer}
+	{1, ifindex, integer}
 ]}.
-

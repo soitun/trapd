@@ -1,0 +1,18 @@
+%%%-----------------------------------------------------------------------------
+%%%azaleanet trap 
+%%%-----------------------------------------------------------------------------
+
+{vardef, "1.3.6.1.4.1.2162.4.5.2",       alarmSerialNo, string}. 
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.2",   alarmNetworkUnitName, sting}.  
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.1",   alarmName, string}.    
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.8",   alarmLevel, string}.  
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.9",   alarmTitle, integer}. 
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.3",   alarmReason, string}. 
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.4",   alarmTime, integer}.
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.6",   alarmType, string}.
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.5",   alarmId, string}.
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.7",   alarmContent, string}.
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.10",  apIp, ip}.
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.12",  apSerialNo, string}.
+{vardef, "1.3.6.1.4.1.2162.4.3.8.3.11",  apmac, mac}.
+

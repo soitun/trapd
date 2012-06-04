@@ -1,0 +1,28 @@
+%%%-----------------------------------------------------------------------------
+%%% bandshine trap 
+%%% trap format
+%%% {1, alarmSn,integer},	告警的序列号
+%%% {2, alarmNeName, string},	DisplayString 	网元的识别名
+%%% {3, alarmLevel,	string}, 	告警级别，设备上报告警消息中的告警级别：1,严重；2,重要；3,次要；4,一般；5,不确定
+%%% {4, alarmType, string}, 	告警类型，设备上报告警消息中的告警类型，包括通讯告警、环境告警、设备告警、处理错误告警、服务质量告警等。
+%%% {5, alarmReasonID, integer}, 	标识告警原因的内部告警号
+%%% {6, alarmReason, string}, 告警原因
+%%% {7, alarmRaiseTime, integer}, 告警发生时间
+%%% {8, alarmStatus, integer}, 	活动状态，表示告警是否被清除还是处于活跃状态
+%%% {9, alarmTitle, string}, 	告警标题
+%%% {10, alarmInfo, string} 	告警内容
+%%%-----------------------------------------------------------------------------
+
+%TODO: copy from comba.parser
+
+{vardef, "1.2.156.112567.1.10.1.1", alarmSn, string}.      
+{vardef, "1.2.156.112567.1.10.1.2", alarmNeName, string}.      
+{vardef, "1.2.156.112567.1.10.1.3", alarmLevel, string}.      
+{vardef, "1.2.156.112567.1.10.1.4", alarmType, string}.      
+{vardef, "1.2.156.112567.1.10.1.5", alarmReasonID, string}.      
+{vardef, "1.2.156.112567.1.10.1.6", alarmReason, string}.      
+{vardef, "1.2.156.112567.1.10.1.7", alarmRaiseTime, string}.      
+{vardef, "1.2.156.112567.1.10.1.8", alarmStatus, string}.      
+{vardef, "1.2.156.112567.1.10.1.9", alarmTitle, string}.      
+{vardef, "1.2.156.112567.1.10.1.10",alarmInfo, string}.      
+
