@@ -1,0 +1,358 @@
+%%%-----------------------------------------------------------------------------
+%%%mwcard trap 
+%%%TODO: variables defination?
+%%%-----------------------------------------------------------------------------
+{mapper, "1.3.6.1.4.1.36150.6.1.4.0.13", cpuUsageTooHighTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "cpuUsageTooHighTrap_$apmac"},
+	{summary,	"AP设备CPU利用率过高告警, AP网元标识: $apmac, AP序列号: $apsn, CPU利用率平均值: $avgUsage, CPU利用率阀值: $threshold"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.14", cpuUsageTooHighTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "cpuUsageTooHighTrap_$apmac"},
+	{summary,	"AP设备CPU利用率过高告警, AP网元标识: $apmac, AP序列号: $apsn, CPU利用率平均值: $avgUsage, CPU利用率阀值: $threshold"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.15", memUsageTooHighTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "memUsageTooHighTrap_$apmac"},
+	{summary,	"AP设备内存利用率过高告警, AP网元标识: $apmac, AP序列号: $apsn, 内存利用率平均值: $avgUsage, 内存利用率阀值: $threshold"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.16", memUsageTooHighTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "memUsageTooHighTrap_$apmac"},
+	{summary,	"AP设备内存利用率过高告警, AP网元标识: $apmac, AP序列号: $apsn, 内存利用率平均值: $avgUsage, 内存利用率阀值: $threshold"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.17", apTemperatureTooHighTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apTemperatureTooHighTrap_$apmac"},
+	{summary,	"AP设备温度过高告警, AP网元标识: $apmac, AP序列号: $apsn, 当前工作温度: $temperature"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.18", apTemperatureTooHighTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apTemperatureTooHighTrap_$apmac"},
+	{summary,	"AP设备温度过高告警, AP网元标识: $apmac, AP序列号: $apsn, 当前工作温度: $temperature"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.23", apOfflineTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apOfflineTrap"},
+	{summary,	"AP设备下线告警, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.22", apOfflineTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apOfflineTrap"},
+	{summary,	"AP设备上线通告, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.19", apMtWorkModeChgTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apMtWorkModeChgTrap_$apmac"},
+	{summary,	"AP设备无线监视工作模式变更通告, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.5",  apSWUpdateFailTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apSWUpdateFailTrap_$alarmNeName"},
+	{summary,	"AP设备软件升级失败通告, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.21", ssidkeyConflictTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "ssidkeyConflictTrap_${alarmNeName}_${radioId}_$ssid"},
+	{summary,	"AP设备SSID密钥冲突通告, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.11", apCoverHoleTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apCoverHoleTrap_${alarmNeName}_$radioId"},
+	{summary,	"AP设备覆盖漏洞告警, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.24", apCoverHoleTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apCoverHoleTrap_${alarmNeName}_$radioId"},
+	{summary,	"AP设备覆盖漏洞告警已清除, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.2", cochAPInterfDetectedTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "cochAPInterfDetectedTrap_${apmac}_${channel}_$stamac"},
+	{summary,	"同频AP干扰告警, AP网元标识: $apmac, AP序列号: $apsn, AP终端MAC: $stamac, 干扰信道ID: $channel"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.12", cochAPInterfDetectedTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "cochAPInterfDetectedTrap_${apmac}_${channel}_$stamac"},
+	{summary,	"同频AP干扰告警已清除, AP网元标识: $apmac, AP序列号: $apsn, AP终端MAC: $stamac, 干扰信道ID: $channel"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.41", adjacentChAPInterfDetectedTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "djacentChAPInterfDetectedTrap_${apmac}_${channel}_$stamac"},
+	{summary,	"邻频AP干扰告警, AP网元标识: $apmac, AP序列号: $apsn, AP终端MAC: $stamac, 干扰信道ID: $channel"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.42", adjacentChAPInterfDetectedTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "djacentChAPInterfDetectedTrap_${apmac}_${channel}_$stamac"},
+	{summary,	"邻频AP干扰告警已清除, AP网元标识: $apmac, AP序列号: $apsn, AP终端MAC: $stamac, 干扰信道ID: $channel"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.3", staInterfDetectedTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "staInterfDetectedTrap_${apmac}_$stamac"},
+	{summary,	"终端干扰告警, AP网元标识: $apmac, AP序列号: $apsn, AP终端MAC: $stamac, 干扰信道ID: $channel"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.13", staInterfDetectedTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "staInterfDetectedTrap_${apmac}_$stamac"},
+	{summary,	"终端干扰告警已清除, AP网元标识: $apmac, AP序列号: $apsn, AP终端MAC: $stamac, 干扰信道ID: $channel"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.14", otherDeviceInterfDetectedTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "otherDeviceInterfDetectedTrap_${apmac}_$stamac"},
+	{summary,	"AP其他设备干扰告警, AP网元标识: $apmac, AP序列号: $apsn, AP终端MAC: $stamac, 干扰信道ID: $channel"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.15", otherDeviceInterfDetectedTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "otherDeviceInterfDetectedTrap_${apmac}_$stamac"},
+	{summary,	"AP其他设备干扰告警已清除, AP网元标识: $apmac, AP序列号: $apsn, AP终端MAC: $stamac, 干扰信道ID: $channel"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.18", radioDownTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "radioDownTrap_$apmac"},
+	{summary,	"AP无线链路中断告警, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.19", radioDownTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "radioDownTrap_$apmac"},
+	{summary,	"AP无线链路中断告警已清除, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.5", apStaFullTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apStaFullTrap_$apmac"},
+	{summary,	"AP设备无法增加新的移动用户告警, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.37", apStaFullTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apStaFullTrap_$apmac"},
+	{summary,	"AP设备无法增加新的移动用户告警已清除, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.0.3", apMtRdoChanlChgTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apMtRdoChanlChgTrap_$apmac"},
+	{summary,	"AP无线信道变更通告, AP网元标识: $apmac, AP序列号: $apsn, 信道ID: $channel"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.21", staAuthErrorTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "staAuthErrorTrap_${apmac}_$stamac"},
+	{summary,	"终端鉴权失败通告, AP网元标识: $apmac, AP序列号: $apsn, 终端MAC: $stamac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.22",  stAssociationFailTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "stAssociationFailTrap_${apmac}_$stamac"},
+	{summary,	"终端关联失败通告, AP网元标识: $apmac, AP序列号: $apsn, 终端MAC: $stamac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.23", userWithInvalidCerficationInbreakNetworkTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "userWithInvalidCerficationInbreakNetworkTrap_${apmac}_$stamac"},
+	{summary,	"非法证书用户侵入网络通告, AP网元标识: $apmac, AP序列号: $apsn, 终端MAC: $stamac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.24", stationRepititiveAttackTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "stationRepititiveAttackTrap_${apmac}_$stamac"},
+	{summary,	"STA重放攻击通告, AP网元标识: $apmac, AP序列号: $apsn, 终端MAC: $stamac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.25", tamperAttackTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "tamperAttackTrap_${apmac}_$stamac"},
+	{summary,	"STA篡改攻击通告, AP网元标识: $apmac, AP序列号: $apsn, 终端MAC: $stamac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.26", lowSafeLevelAttackTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "lowSafeLevelAttackTrap_${apmac}"},
+	{summary,	"STA安全等级降低攻击通告, AP网元标识: $apmac, AP序列号: $apsn, 终端MAC: $stamac"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.4.1.27", addressRedirectionAttackTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "addressRedirectionAttackTrap_$apmac"},
+	{summary,	"STA地址重定向攻击通告, AP网元标识: $apmac, AP序列号: $apsn, 终端MAC: $stamac"}
+]}.
+
+%%---
+%%ac
+%%---
+{"1.3.6.1.4.1.36150.6.1.5.1.18", powerOffTrap, [
+	{severity,	major},
+	{evtkey,    "powerOffTrap"},
+	{summary,	"AC电源掉电告警, 网元标识: $acid"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.19", powerOffTrap, [
+	{severity,	clear},
+	{evtkey,    "powerOffTrap"},
+	{summary,	"AC电源掉电告警已清除, 网元标识: $acid"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.6", acCPUusageTooHighTrap, [
+	{severity,	major},
+	{evtkey,    "acCPUusageTooHighTrap"},
+	{summary,	"AC设备CPU利用率过高告警, AC网元标识: $acid, 当前CPU利用率: $usage"} 
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.20", acCPUusageTooHighTrap, [
+	{severity,	clear},
+	{evtkey,    "acCPUusageTooHighTrap"},
+	{summary,	"AC设备CPU利用率过高告警, 网元标识: $acid, 当前CPU利用率: $usage"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.7",  acMemUsageTooHighTrap, [
+	{severity,	major},
+	{evtkey,    "acMemUsageTooHighTrap"},
+	{summary,	"AC内存利用率过高告警, AC网元标识: $acid, 当前内存利用率: $usage"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.21", acMemUsageTooHighTrap, [
+	{severity,	clear},
+	{evtkey,    "acMemUsageTooHighTrap"},
+	{summary,	"AC内存利用率过高告警已清除, AC网元标识: $acid, 当前内存利用率: $usage"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.24", acDHCPAddressExhaustTrap, [
+	{severity,	major},
+	{evtkey,    "acDHCPAddressExhaustTrap"},
+	{summary,	"AC设备DHCP可分配地址耗尽告警, DHCP平均利用率: $avgUsage"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.25",  acDHCPAddressExhaustTrap, [
+	{severity,	clear},
+	{evtkey,    "acDHCPAddressExhaustTrap"},
+	{summary,	"AC设备DHCP可分配地址耗尽告警已清除, DHCP平均利用率: $avgUsage"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.0.6", systmColdStartTrap, [
+	{severity,	major},
+	{evtkey,    "systmColdStartTrap"},
+	{summary,	"AC系统冷启动通告, MAC地址: $acmac, 网元标识: $acid"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.0.1", systemWarmStartTrap, [
+	{severity,	major},
+	{evtkey,    "systemWarmStartTrap"},
+	{summary,	"AC系统热启动通告"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.50", acHeartbeatTrap, [
+	{severity,	major},
+	{evtkey,    "acHeartbeatTrap"},
+	{summary,	"AC设备心跳周期通告, MAC地址: $apmac, 网元标识: $acid"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.0.3", ipAddChangeTrap, [
+	{severity,	major},
+	{evtkey,    "ipAddChangeTrap"},
+	{summary,	"AC设备IP地址变更通告"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.2", radiusAuthServerUnavailableTrap, [
+	{severity,	major},
+	{evtkey,    "radiusAuthServerUnavailableTrap"},
+	{summary,	"Radius认证服务器不可达/不可用/无法连接告警"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.26", radiusAuthServerUnavailableTrap, [
+	{severity,	clear},
+	{evtkey,    "radiusAuthServerUnavailableTrap"},
+	{summary,	"Radius认证服务器不可达/不可用/无法连接告已清除"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.3", radiusAccServerUnavailableTrap, [
+	{severity,	major},
+	{evtkey,    "radiusAccServerUnavailableTrap"},
+	{summary,	"Radius计费服务器不可达/不可用/无法连接告警"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.27", radiusAccServerUnavailableTrap, [
+	{severity,	clear},
+	{evtkey,    "radiusAccServerUnavailableTrap"},
+	{summary,	"Radius计费服务器不可达/不可用/无法连接告警已清除"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.4", portalServerUnavaibleTrap, [
+	{severity,	major},
+	{evtkey,    "portalServerUnavaibleTrap"},
+	{summary,	"Portal服务器不可达告警"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.1.28", portalServerUnavaibleTrap,	[
+	{severity,	clear},
+	{evtkey,    "portalServerUnavaibleTrap"},
+	{summary,	"Portal服务器不可达告警已清除"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.0.4",  acTurnToBackupDeviceTrap, [
+	{severity,	major},
+	{evtkey,    "acTurnToBackupDeviceTrap"},
+	{summary,	"AC发生主备切换告警, 网元标识: $acid"}
+]}.
+
+{"1.3.6.1.4.1.36150.6.1.5.0.2", apACTimeSyncFailureTrap, [
+	{severity,	major},
+	{evtkey,    "apACTimeSyncFailureTrap_$apmac"},
+	{summary,	"AC与AP间系统时钟同步失败通告, AP网元标识: $apmac, AP序列号: $apsn, AP MAC地址: $apmac"}
+]}.
+

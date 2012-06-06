@@ -1,0 +1,281 @@
+%%%-----------------------------------------------------------------------------
+%%%moto trap 
+%%%-----------------------------------------------------------------------------
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.10.8", memUsageTooHighTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apid"}},
+	{evtkey,    "memUsageTooHighTrap_$apid"},
+	{summary,	"AP内存利用率过高告警, APID: $apid, AP MAC地址: $apmac, 当前可用内存: $memFree, 内存使用阈值: $memThresh"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.10.10", memUsageTooHighTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apid"}},
+	{evtkey,    "memUsageTooHighTrap_$apid"},
+	{summary,	"AP内存利用率过高告警已清除, APID: $apid, AP MAC地址: $apmac, 当前可用内存: $memFree, 内存使用阈值: $memThresh"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.1.26", apOfflineTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apOfflineTrap"},
+	{summary,	"AP下线告警, AP MAC地址: $apmac, AP离线原因: $reason, AP离线次数: $times"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.1.28", apOfflineTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apOfflineTrap"},
+	{summary,	"AP下线告警, AP MAC地址: $apmac, AP离线原因: $reason, AP离线次数: $times"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.10.12", apMtWorkModeChgTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apMtWorkModeChgTrap_$apmac"},
+	{summary,	"AP无线监视工作模式变更通告, AP MAC地址: $apmac, 当前工作模式: $mode"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.18", cochAPInterfDetectedTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "cochAPInterfDetectedTrap_${apmac}_${radio}_${mac}"},
+	{summary,	"同频AP干扰告警, AP MAC地址: $apmad, 无线接口名称: $radio, 无线接口信道: $channel, 干扰设备MAC地址: $mac"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.39", cochAPInterfDetectedTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "cochAPInterfDetectedTrap_${apmac}_${radio}_${mac}"},
+	{summary,	"同频AP干扰告警, AP MAC地址: $apmad, 无线接口名称: $radio, 无线接口信道: $channel, 干扰设备MAC地址: $mac"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.20", staInterfDetectedTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "staInterfDetectedTrap_${apmac}_${radio}_${mac}"},
+	{summary,	"终端干扰告警, AP MAC地址: $apmad, 无线接口名称: $radio, 无线接口信道: $channel, 干扰设备MAC地址: $mac"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.42", staInterfDetectedTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "staInterfDetectedTrap_${apmac}_${radio}_${mac}"},
+	{summary,	"终端干扰告警已清除, AP MAC地址: $apmad, 无线接口名称: $radio, 无线接口信道: $channel, 干扰设备MAC地址: $mac"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.44", otherDeviceInterfDetectedTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "otherDeviceInterfDetectedTrap_${apmac}_${radio}_${mac}"},
+	{summary,	"其他设备干扰告警, AP MAC地址: $apmad, 无线接口名称: $radio, 无线接口信道: $radioIdx, 干扰设备MAC地址: $mac"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.45", otherDeviceInterfDetectedTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "otherDeviceInterfDetectedTrap_${apmac}_${radio}_${mac}"},
+	{summary,	"其他设备干扰告警已清除, AP MAC地址: $apmad, 无线接口名称: $radio, 无线接口信道: $radioIdx, 干扰设备MAC地址: $mac"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.51", radioDownTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apid"}},
+	{evtkey,    "radioDownTrap_${apid}_${radio}"},
+	{summary,	"无线链路中断告警, AP标识: $apid, AP MAC地址: $apmac, 无线接口名称: $radio, 无线接口索引: $radioIdx"} 
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.53", radioDownTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apid"}},
+	{evtkey,    "radioDownTrap_${apid}_${radio}"},
+	{summary,	"无线链路中断告警, AP标识: $apid, AP MAC地址: $apmac, 无线接口名称: $radio, 无线接口索引: $radioIdx"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.1.22", apStaFullTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apStaFullTrap_$apmac_$staMac"},
+	{summary,	"AP无法增加新的移动用户告警, AP MAC地址: $apmac, 用户终端MAC: $staMac, 最大限制: $limitNum"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.1.35", apStaFullTrap, [
+	{severity,	clear}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "apStaFullTrap_$apmac_$staMac"},
+	{summary,	"AP无法增加新的移动用户告警已清除, AP MAC地址: $apmac, 用户终端MAC: $staMac, 最大限制: $limitNum"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.1.28",  staAuthErrorTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "staAuthErrorTrap_${apmac}_${stamac}"},
+	{summary,	"终端鉴权失败通告, AP MAC地址: $apmac, 用户终端MAC: $stamac, 无线接口索引: $radioIdx"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.1.22", stAssociationFailTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "stAssociationFailTrap_${apid}_${radioIdx}_$stamac"},
+	{summary,	"终端鉴权失败通告, AP MAC地址: $apmac, 用户终端MAC: $stamac, 无线接口索引: $radioIdx"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.25", userWithInvalidCerficationInbreakNetworkTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "InvalidCerfication_${apmac}_$stamac"},
+	{summary,	"非法证书用户侵入网络通告, AP MAC地址: $apmac, 无线接口名称: $radio, bssid: $bssid, 侵入用户MAC: $macaddr"} 
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.27", stationRepititiveAttackTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "stationRepititiveAttackTrap_${apmac}_$stamac"},
+	{summary,	"客户端重放攻击通告, AP MAC地址: $apmac, 无线接口名称: $radio, bssid: $bssid, 客户端MAC: $macaddr"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.29", tamperAttackTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "tamperAttackTrap_${apmac}_$stamac"},
+	{summary,	"STA篡改攻击通告, AP MAC地址: $apmac, 无线接口名称: $radio, bssid: $bssid, 客户端MAC: $macaddr"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.31", lowSafeLevelAttackTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "lowSafeLevelAttackTrap_${apmac}_${stamac}"},
+	{summary,	"安全等级降低攻击通告, AP MAC地址: $apmac, 无线接口名称: $radio, bssid: $bssid, 客户端MAC: $macaddr"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.33", addressRedirectionAttackTrap, [
+	{severity,	minor}, 
+	{source,	{apid, "$apmac"}},
+	{evtkey,    "addressRedirectionAttackTrap_${apmac}_$stamac"},
+	{summary,	"地址重定向攻击通告, AP MAC地址: $apmac, 无线接口名称: $radio, bssid: $bssid, 客户端MAC: $macaddr"}
+]}.
+
+%%---
+%%ac
+%%---
+{mapper, "1.3.6.1.4.1.388.14.5.1.1.1", systmColdStartTrap, [
+	{severity,	major},
+	{evtkey,    "systmColdStartTrap"},
+	{summary,	"AC设备冷启"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.1.14", systmColdStartTrap, [
+	{severity,	major},
+	{evtkey,    "systmColdStartTrap"},
+	{summary,	"AC设备冷启恢复"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.1.12", systmWarmStartTrap, [
+	{severity,	major},
+	{evtkey,    "systmWarmStartTrap"},
+	{summary,	"AC设备热启"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.1.16", systmWarmStartTrap, [
+	{severity,	clear},
+	{evtkey,    "systmWarmStartTrap"},
+	{summary,	"AC设备热启恢复"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.4.35", acCPUusageTooHighTrap, [
+	{severity,	major}, 
+	{evtkey,    "acCPUusageTooHighTrap"},
+	{summary,	"AC设备CPU利用率过高告警, 当前CPU占用率: $usage, CPU利用率阈值: $threshold"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.4.36", acCPUusageTooHighTrap, [
+	{severity,	clear}, 
+	{evtkey,    "acCPUusageTooHighTrap_$physicalIndex"},
+	{summary,	"AC设备CPU利用率过高告警已清除, 当前CPU占用率: $usage, CPU利用率阈值: $threshold"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.4.39", acMemUsageTooHighTrap, [
+	{severity,	major},
+	{evtkey,    "acMemUsageTooHighTrap"},
+	{summary,	"AC设备内存利用率过高告警, 内存总量: $memTotal, 内存使用限量: $memLimit"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.4.41", acMemUsageTooHighTrap, [
+	{severity,	clear},
+	{evtkey,    "acMemUsageTooHighTrap"},
+	{summary,	"AC设备内存利用率过高告警已清除, 内存总量: $memTotal, 内存使用限量: $memLimit"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.9.9", acDHCPAddressExhaustTrap, [
+	{severity,	major},
+	{evtkey,    "acDHCPAddressExhaustTrap_$poolName"},
+	{summary,	"AC设备DHCP可分配地址耗尽告警, 地址池名: $poolName"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.9.11", acDHCPAddressExhaustTrap, [
+	{severity,	clear},
+	{evtkey,    "acDHCPAddressExhaustTrap_$poolName"},
+	{summary,	"AC DHCP可分配地址耗尽告警清除, 地址池名: $poolName"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.6.13", acHeartbeatTrap, [
+	{severity,	major},
+	{evtkey,    "acHeartbeatTrap"},
+	{summary,	"AC设备心跳周期通告"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.3.4",  ipAddChangeTrap, [
+	{severity,	major},
+	{evtkey,    "ipAddChangeTrap"},
+	{summary,	"AC设备IP地址变更通告, 原IP地址: $oldIpaddr 新IP地址: $ipaddr"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.9.15", radiusAuthServerUnavailableTrap, [
+	{severity,	major},
+	{evtkey,    "radiusAuthServerUnavailableTrap"},
+	{summary,	"Radius认证服务器不可达/不可用/无法连接告警, 服务器地址: $addr, 服务器端口: $port"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.9.17", radiusAuthServerUnavailableTrap, [
+	{severity,	clear},
+	{evtkey,    "radiusAuthServerUnavailableTrap"},
+	{summary,	"Radius认证服务器不可达/不可用/无法连接告警, 服务器地址: $addr, 服务器端口: $port"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.9.20", radiusAccServerUnavailableTrap, [
+	{severity,	major},
+	{evtkey,    "radiusAccServerUnavailableTrap"},
+	{summary,	"Radius计费服务器不可达/不可用/无法连接告警, 服务器地址: $addr, 服务器端口: $port"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.9.22", radiusAccServerUnavailableTrap, [
+	{severity,	clear},
+	{evtkey,    "radiusAccServerUnavailableTrap"},
+	{summary,	"Radius计费服务器不可达/不可用/无法连接告警, 服务器地址: $addr, 服务器端口: $port"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.9.5", portalServerUnavaibleTrap, [
+	{severity,	major},
+	{evtkey,    "portalServerUnavaibleTrap"},
+	{summary,	"Portal服务器不可达告警, Portal页面网址: $url, Portal服务器: $server"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.9.12", portalServerUnavaibleTrap, [
+	{severity,	clear},
+	{evtkey,    "portalServerUnavaibleTrap"},
+	{summary,	"Portal服务器不可达告警, Portal页面网址: $url, Portal服务器: $server"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.5.3", acTurnToBackupDeviceTrap, [
+	{severity,	major},
+	{evtkey,    "acTurnToBackupDeviceTrap"},
+	{summary,	"AC发生主备切换告警"}
+]}.
+
+{mapper, "1.3.6.1.4.1.388.14.5.1.7.2.35", apACTimeSyncFailureTrap, [
+	{severity,	major},
+	{evtkey,    "apACTimeSyncFailureTrap_$apmac"},
+	{summary,	"AC与AP间系统时钟同步失败通告, AP MAC地址: $apmac"}
+]}.
+
+

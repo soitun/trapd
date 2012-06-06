@@ -1,0 +1,38 @@
+%AP软件升级失败通告
+{mapper, "1.3.6.1.4.1.3902.1.30.42", pFirmWareUpdateFailTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+    {evtkey,    "apFirmWareUpdateFailTrap_$apmac"}, 
+    {summary,	"AP软件升级失败通告, 设备标识: $apmac"}
+]}.
+
+%AP SSID密钥冲突通告
+{mapper, "1.3.6.1.4.1.3902.1.30.77", ssidkeyConflictTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+    {evtkey,    "ssidkeyConflictTrap_${apmac}"},
+    {summary,	"AP设备SSID密钥冲突通告, AP标识: $apmac"}
+]}.
+
+%AP 发现可疑设备通告
+{mapper, "1.3.6.1.4.1.3902.1.30.27", unsecureapDetectedTrap, [
+	{severity,	major}, 
+	{source,	{apid, "$apmac"}},
+    {evtkey,    "unsecureapDetectedTrap_${apmac}"},
+    {summary,	"发现不可靠的AP告警, AP标识: $apmac, 可疑AP的BSS MAC地址: $unsecApMac"}
+]}.
+
+%AC配置文件错误告警
+{mapper, "1.3.6.1.4.1.3902.1.30.46", acConfigurationErrorTrap, [
+	{severity,	major},
+    {evtkey,    "acConfigurationErrorTrap"},
+    {summary,	"配置文件错误告警, 详细信息: $alarmAdditionalInfo"}
+]}.
+
+%AC软件升级失败通告
+{mapper, "1.3.6.1.4.1.3902.1.30.35", acUpgradeFailureTrap, [
+	{severity,	major},
+    {evtkey,    "acUpgradeFailureTrap"},
+    {summary,	"AC软件升级失败通告"}
+]}.
+
