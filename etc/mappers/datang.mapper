@@ -4,189 +4,189 @@
 
 {mapper, "1.3.6.1.4.1.5105.80.30.70", cpuUsageTooHighTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "cpuUsageTooHighTrap_$apmac"}, 
 	{summary,	"AP设备CPU利用率过高告警, AP标识: $apmac, 当前CPU利用率: $cpuUsage, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.71", cpuUsageTooHighTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "cpuUsageTooHighTrap_$apmac"}, 
 	{summary,	"AP设备CPU利用率过高告警已清除, AP标识: $apmac, 当前CPU利用率: $cpuUsage, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.72", memUsageTooHighTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "memUsageTooHighTrap_$apmac"},
 	{summary,	"AP设备内存利用率过高告警, AP标识: $apmac, 当前内存利用率: $memUsage, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.73", memUsageTooHighTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "memUsageTooHighTrap_$apmac"},
 	{summary,	"AP设备内存利用率过高告警已清除, AP标识: $apmac,  当前内存利用率: $memUsage, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.23",  apOfflineTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "apOfflineTrap"},
 	{summary,	"AP设备下线告警, AP标识: $apmac, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.24",  apOfflineTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "apOfflineTrap"},
 	{summary,	"AP设备下线告警, AP标识: $apmac, 详细: $alarmTitle"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.76",  apMtWorkModeChgTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "apMtWorkModeChgTrap_$apmac"},
 	{summary,	"AP设备无线监视工作模式变更通告, AP标识: $apmac, 详细: $alarmTitle"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.9", cochAPInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNetworkUnitName"}},
+	{source,	{fitap, "$alarmNetworkUnitName"}},
 	{evtkey,    "cochAPInterfDetectedTrap_${alarmNetworkUnitName}_${bssid}_${channel}"},
 	{summary,	"同频AP干扰告警, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.78", cochAPInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNetworkUnitName"}},
+	{source,	{fitap, "$alarmNetworkUnitName"}},
 	{evtkey,    "cochAPInterfDetectedTrap_${alarmNetworkUnitName}_${bssid}_${channel}"},
 	{summary,	"同频AP干扰告警已清除, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.172", adjacentChAPInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "adjacentChAPInterfDetectedTrap_${apmac}_$radio"},
 	{summary,	"邻频AP干扰告警, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.173", adjacentChAPInterfDetectedTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "adjacentChAPInterfDetectedTrap_${apmac}_$radio"},
 	{summary,	"邻频AP干扰告警已清除, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.11", staInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "staInterfDetectedTrap_${apmac}_$radio"},
 	{summary,	"STA终端干扰告警, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.79", staInterfDetectedTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "staInterfDetectedTrap_${apmac}_$radio"},
 	{summary,	"STA终端干扰告警, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.4", otherDeviceInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "otherDeviceInterfDetectedTrap_${apmac}_$radio"},
 	{summary,	"其他设备干扰告警, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.80", otherDeviceInterfDetectedTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "otherDeviceInterfDetectedTrap_${apmac}_$radio"},
 	{summary,	"其他设备干扰告警已清除, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.83", radioDownTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "radioDownTrap_${apmac}_$radio"},
 	{summary,	"AP设备无线链路中断告警, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.84", radioDownTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "radioDownTrap_${apmac}_$radio"},
 	{summary,	"AP设备无线链路中断告警已清除, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.87", apStaFullTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "apStaFullTrap_$apmac"},
 	{summary,	"AP设备无法增加新的移动用户告警, AP标识: $apmac, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.88", apStaFullTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "apStaFullTrap_$apmac"},
 	{summary,	"AP设备无法增加新的移动用户告警已清除, AP标识: $apmac, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.25", apMtRdoChanlChgTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "apMtRdoChanlChgTrap_${apmac}_$radio"},
 	{summary,	"AP设备无线信道变更通告, AP标识: $apmac, 无线接口索引: $radio, 无线信道: $channel, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.92",  staAuthErrorTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "staAuthErrorTrap_$apmac"},
 	{summary,	"STA终端鉴权失败通告, AP标识: $apmac, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.93",  stAssociationFailTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "stAssociationFailTrap_$apmac"},
 	{summary,	"STA终端关联失败通告, AP标识: $apmac, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.100",  userWithInvalidCerficationInbreakNetworkTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "stationRepititiveAttackTrap_$apmac"},
 	{summary,	"非法证书用户侵入网络通告, AP标识: $apmac, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.101", stationRepititiveAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "tamperAttackTrap_$apmac"},
 	{summary,	"STA客户端重放攻击通告, AP标识: $apmac, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.102", tamperAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "tamperAttackTrap_$apmac"},
 	{summary,	"STA篡改攻击通告, AP标识: $apmac, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.5105.80.30.103", lowSafeLevelAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "lowSafeLevelAttackTrap_$apmac"},
 	{summary,	"AP设备安全等级降低攻击通告, AP标识: $apmac, 详细: $alarmCause"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.17518.2400.30.104", addressRedirectionAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apmac"}},
+	{source,	{fitap, "$apmac"}},
 	{evtkey,    "addressRedirectionAttackTrap_$apmac"},
 	{summary,	"STA地址重定向攻击通告, AP标识: $apmac, 详细: $alarmCause"}
 ]}.

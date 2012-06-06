@@ -3,189 +3,189 @@
 %%%-----------------------------------------------------------------------------
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.1.9.0", cpuUsageTooHighTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "cpuUsageTooHighTrap_$alarmNeName"}, 
 	{summary,	"AP设备CPU利用率过高告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.1.18.0", cpuUsageTooHighTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "cpuUsageTooHighTrap_$alarmNeName"}, 
 	{summary,	"AP设备CPU利用率过高告警已清除, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.1.10.0", memUsageTooHighTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "memUsageTooHighTrap_$alarmNeName"},
 	{summary,	"AP设备内存利用率过高告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.1.19.0", memUsageTooHighTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "memUsageTooHighTrap_$alarmNeName"},
 	{summary,	"AP设备内存利用率过高告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.1.7.0",  apOfflineTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "apOfflineTrap"},
 	{summary,	"AP设备下线告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.1.6.0",  apOfflineTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "apOfflineTrap"},
 	{summary,	"AP设备上线通告, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.2.14.0", apMtWorkModeChgTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "apMtWorkModeChgTrap_$alarmNeName"},
 	{summary,	"AP设备无线监视工作模式变更通告, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.2.16.0", cochAPInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "cochAPInterfDetectedTrap_$alarmNeName"},
 	{summary,	"同频AP干扰告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"} 
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.2.17.0", cochAPInterfDetectedTrap, [
 	{severity,	clear},
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "cochAPInterfDetectedTrap_$alarmNeName"},
 	{summary,	"同频AP干扰告警已清除, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.2.18.0", adjacentChAPInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "adjacentChAPInterfDetectedTrap_$alarmNeName"},
 	{summary,	"邻频AP干扰告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"} 
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.2.19.0", adjacentChAPInterfDetectedTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "adjacentChAPInterfDetectedTrap_$alarmNeName"},
 	{summary,	"邻频AP干扰告警已清除, AP标识: $alarmNeName, 详细信息: $alarmInfo"} 
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.2.5.0", staInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "staInterfDetectedTrap_${alarmNeName}_$staMac"},
 	{summary,	"STA终端干扰告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"} 
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.2.9.0", staInterfDetectedTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "staInterfDetectedTrap_${alarmNeName}_$staMac"},
 	{summary,	"STA终端干扰告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.2.6.0", otherDeviceInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "otherDeviceInterfDetectedTrap_$alarmNeName"},
 	{summary,	"其他设备干扰告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.2.10.0", otherDeviceInterfDetectedTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "otherDeviceInterfDetectedTrap_$alarmNeName"},
 	{summary,	"其他设备干扰告警已清除, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.3.6.0", radioDownTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "radioDownTrap_${alarmNeName}_$radioId"},
 	{summary,	"AP无线链路中断告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.3.7.0", radioDownTrap,[
 	{severity,	clear}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "radioDownTrap_${alarmNeName}_$radioId"},
 	{summary,	"AP无线链路中断告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.3.1.0", apStaFullTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "apStaFullTrap_$alarmNeName"},
 	{summary,	"AP设备无法增加新的移动用户告警, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.3.4.0", apStaFullTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "apStaFullTrap_$alarmNeName"},
 	{summary,	"AP设备无法增加新的移动用户告警已清除, AP标识: $alarmNeName, 详细信息: $alarmInfo"} 
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.2.2.0",  apMtRdoChanlChgTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "apMtRdoChanlChgTrap_${alarmNeName}"},
 	{summary,	"AP设备无线信道变更通告, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.6.1.0",  staAuthErrorTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "staAuthErrorTrap_${alarmNeName}_$staMac"},
 	{summary,	"STA终端鉴权失败通告, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.6.2.0", stAssociationFailTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "staAuthErrorTrap_${alarmNeName}_$staMac"},
 	{summary,	"STA终端关联失败通告, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.4.1.0", userWithInvalidCerficationInbreakNetworkTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "userWithInvalidCerficationInbreakNetworkTrap_${alarmNeName}_$staMac"},
 	{summary,	"STA非法证书用户侵入网络通告, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.4.2.0", stationRepititiveAttackTrap, [
 	{severity,	major},
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "stationRepititiveAttackTrap_${alarmNeName}_$staMac"},
 	{summary,	"STA客户端重放攻击通告, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.4.3.0", tamperAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "tamperAttackTrap_${alarmNeName}_$staMac"},
 	{summary,	"STA篡改攻击通告, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.4.4.0", lowSafeLevelAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "lowSafeLevelAttackTrap_${alarmNeName}_$staMac"},
 	{summary,	"STA安全等级降低攻击通告, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.34230.1.10.22.10.4.5.0", addressRedirectionAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$alarmNeName"}},
+	{source,	{fitap, "$alarmNeName"}},
 	{evtkey,    "addressRedirectionAttackTrap_${alarmNeName}_$staMac"},
 	{summary,	"STA地址重定向攻击通告, AP标识: $alarmNeName, 详细信息: $alarmInfo"}
 ]}.

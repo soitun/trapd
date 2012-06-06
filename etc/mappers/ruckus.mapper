@@ -4,189 +4,189 @@
 %%ap 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.0.13", cpuUsageTooHighTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "cpuUsageTooHighTrap_$apid"},
 	{summary,	"AP设备CPU利用率过高告警, AP网元标识: $apid, AP序列号: $apsn, CPU利用率平均值: $avgUsage, CPU利用率阀值: $threshold"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.0.14", cpuUsageTooHighTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "cpuUsageTooHighTrap_$apid"},
 	{summary,	"AP设备CPU利用率过高告警, AP网元标识: $apid, AP序列号: $apsn, CPU利用率平均值: $avgUsage, CPU利用率阀值: $threshold"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.0.15", memUsageTooHighTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "memUsageTooHighTrap_$apid"},
 	{summary,	"AP设备内存利用率过高告警, AP网元标识: $apid, AP序列号: $apsn, 内存利用率平均值: $avgUsage, 内存利用率阀值: $threshold"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.0.16", memUsageTooHighTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "memUsageTooHighTrap_$apid"},
 	{summary,	"AP设备内存利用率过高告警, AP网元标识: $apid, AP序列号: $apsn, 内存利用率平均值: $avgUsage, 内存利用率阀值: $threshold"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.0.23", apOfflineTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "apOfflineTrap"},
 	{summary,	"AP设备下线告警, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.0.22", apOfflineTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "apOfflineTrap"},
 	{summary,	"AP设备上线通告, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.0.19", apMtWorkModeChgTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "apMtWorkModeChgTrap_$apid"},
 	{summary,	"AP设备无线监视工作模式变更通告, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.2", cochAPInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "cochAPInterfDetectedTrap_${apid}_${channel}_$stamac"},
 	{summary,	"同频AP干扰告警, AP网元标识: $apid, AP序列号: $apsn, 干扰信道ID: $channel"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.12", cochAPInterfDetectedTrap, [
 	{severity,	clear},
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "cochAPInterfDetectedTrap_${apid}_${channel}_$stamac"},
 	{summary,	"同频AP干扰告警已清除, AP网元标识: $apid, AP序列号: $apsn, 干扰信道ID: $channel"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.41", adjacentChAPInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "djacentChAPInterfDetectedTrap_${apid}_${channel}_$stamac"},
 	{summary,	"邻频AP干扰告警, AP网元标识: $apid, AP序列号: $apsn, 干扰信道ID: $channel"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.42", adjacentChAPInterfDetectedTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "djacentChAPInterfDetectedTrap_${apid}_${channel}_$stamac"},
 	{summary,	"邻频AP干扰告警已清除, AP网元标识: $apid, AP序列号: $apsn, 干扰信道ID: $channel"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.3", staInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "staInterfDetectedTrap_${apid}_$stamac"},
 	{summary,	"终端干扰告警, AP网元标识: $apid, AP序列号: $apsn, 干扰信道ID: $channel"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.13", staInterfDetectedTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "staInterfDetectedTrap_${apid}_$stamac"},
 	{summary,	"终端干扰告警已清除, AP网元标识: $apid, AP序列号: $apsn, 干扰信道ID: $channel"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.14", otherDeviceInterfDetectedTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "otherDeviceInterfDetectedTrap_${apid}_$stamac"},
 	{summary,	"AP其他设备干扰告警, AP网元标识: $apid, AP序列号: $apsn, 干扰信道ID: $channel"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.15", otherDeviceInterfDetectedTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "otherDeviceInterfDetectedTrap_${apid}_$stamac"},
 	{summary,	"AP其他设备干扰告警已清除, AP网元标识: $apid, AP序列号: $apsn, AP终端MAC: $stamac, 干扰信道ID: $channel"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.18", radioDownTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "radioDownTrap_$apid"},
 	{summary,	"AP无线链路中断告警, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.19", radioDownTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "radioDownTrap_$apid"},
 	{summary,	"AP无线链路中断告警已清除, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.5", apStaFullTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "apStaFullTrap_$apid"},
 	{summary,	"AP设备无法增加新的移动用户告警, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.37", apStaFullTrap, [
 	{severity,	clear}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "apStaFullTrap_$apid"},
 	{summary,	"AP设备无法增加新的移动用户告警已清除, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.0.3", apMtRdoChanlChgTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "apMtRdoChanlChgTrap_$apid"},
 	{summary,	"AP无线信道变更通告, AP网元标识: $apid, AP序列号: $apsn, 信道ID: $channel"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.21",  staAuthErrorTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "staAuthErrorTrap_$apid_$stamac"},
 	{summary,	"终端鉴权失败通告, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.22", stAssociationFailTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "stAssociationFailTrap_$apid_$stamac"},
 	{summary,	"终端关联失败通告, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.23", userWithInvalidCerficationInbreakNetworkTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "userWithInvalidCerficationInbreakNetworkTrap_${apid}_$stamac"},
 	{summary,	"非法证书用户侵入网络通告, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.24", stationRepititiveAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "stationRepititiveAttackTrap_${apid}_$stamac"},
 	{summary,	"STA重放攻击通告, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.25", tamperAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "tamperAttackTrap_${apid}_$stamac"},
 	{summary,	"STA篡改攻击通告, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.26", lowSafeLevelAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "lowSafeLevelAttackTrap_${apid}"},
 	{summary,	"STA安全等级降低攻击通告, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.31656.6.1.4.1.27", addressRedirectionAttackTrap, [
 	{severity,	major}, 
-	{source,	{apid, "$apid"}},
+	{source,	{fitap, "$apid"}},
 	{evtkey,    "addressRedirectionAttackTrap_$apid"},
 	{summary,	"STA地址重定向攻击通告, AP网元标识: $apid, AP序列号: $apsn"}
 ]}.
