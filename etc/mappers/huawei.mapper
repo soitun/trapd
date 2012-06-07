@@ -1,0 +1,61 @@
+%%%--------------------------------------------------------
+%%%huawei trap mappers
+%%%--------------------------------------------------------
+%ap traps
+{mapper, "1.3.6.1.4.1.25506.2.75.1.3.0.2",  apOfflineTrap, [
+	{severity,	major},
+	{source,	{fitap, "$hwApMac"}},
+	{evtkey,    "apOfflineTrap"}, 
+	{summary,	"AP设备上线通告, APMAC: $hwApMac, AP名称: $hwApSysName"}
+]}.
+
+{mapper, "1.3.6.1.4.1.2011.6.139.2.1.1.2", apOfflineTrap, [
+	{severity,	clear},
+	{source,	{fitap, "$hwApMac"}},
+	{evtkey,    "apOfflineTrap"}, 
+	{summary,	"AP设备上线通告, APMAC: $hwApMac, AP名称: $hwApSysName"}
+]}.
+
+%ac traps
+{mapper, "1.3.6.1.4.1.2011.5.2.2.2.0.6", acTurnToBackupDeviceTrap, [
+	{severity,	major},
+	{evtkey,    "acTurnToBackupDeviceTrap"},
+	{summary,	"AC发生主备切换产生的告警."}
+]}.
+
+{mapper, "1.3.6.1.4.1.2011.5.25.219.2.5.5", powerOffTrap, [
+	{severity,	major},
+	{evtkey,    "powerOffTrap_$hwentityphysicalindex"},
+	{summary,	"AC电源掉电告警, 电源模块: $hwentityphysicalindex"}
+]}.
+
+{mapper, "1.3.6.1.4.1.2011.5.25.219.2.5.6", powerOffTrap, [
+	{severity,	clear},
+	{evtkey,    "powerOffTrap_$hwentityphysicalindex"},
+	{summary,	"AC电源掉电告警已清除, 电源模块: $hwentityphysicalindex"}
+]}.
+
+{mapper, "1.3.6.1.4.1.2011.5.25.129.2.4.1", acCPUusageTooHighTrap, [
+	{severity,	major},
+	{evtkey,    "acCPUusageTooHighTrap"},
+	{summary,	"AC设备CPU利用率过高告警, 当前CPU利用率: $hwBaseUsageValue, CPU利用率门限: $hwBaseUsageThreshold"}
+]}.
+
+{mapper, "1.3.6.1.4.1.2011.5.25.129.2.4.2", acCPUusageTooHighTrap, [
+	{severity,	clear},
+	{evtkey,    "acCPUusageTooHighTrap"},
+	{summary,	"AC设备CPU利用率过高告警已清除, 当前CPU利用率: $hwBaseUsageValue, CPU利用率门限: $hwBaseUsageThreshold"}
+]}.
+
+{mapper, "1.3.6.1.4.1.2011.5.25.129.2.6.1", acMemUsageTooHighTrap, [
+	{severity,	major},
+	{evtkey,    "acMemUsageTooHighTrap"},
+	{summary,	"AC设备内存利用率过高告警, 当前内存利用率: $hwBaseUsageValue, 内存阈值门限: $hwBaseUsageThreshold"}
+]}.
+
+{mapper, "1.3.6.1.4.1.2011.5.25.129.2.6.2", acMemUsageTooHighTrap, [
+	{severity,	clear},
+	{evtkey,    "acMemUsageTooHighTrap"},
+	{summary,	"AC设备内存利用率过高告警已清除, 当前内存利用率: $hwBaseUsageValue, 内存阈值门限: $hwBaseUsageThreshold"}
+]}.
+

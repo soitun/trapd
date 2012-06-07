@@ -1,0 +1,48 @@
+%%%-----------------------------------------------------------------------------
+%%%h3c 25506 trap 
+%%%-----------------------------------------------------------------------------
+%ap variables
+{vardef, "1.3.6.1.4.1.25506.2.75.1.2.1.1.1", apid, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.1.3.1.2", tunlUpInfo, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.1.3.1.4", apName, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.1.3.1.5", apIPAddr, ip}. 
+{vardef, "1.3.6.1.4.1.25506.2.75.1.3.1.9", dwnCount, integer}.
+
+{vardef, "1.3.6.1.4.1.25506.2.75.3.1.1.1.3", staUserName, mac}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.2.1.2", staMAC, mac}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.1.1.1.11", staVlanId, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.2.1.3", staSessionStartTime, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.1.2.1.2", currRadioID, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.1.1.1.12", staSSIDName, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.1.2.1.1", currAPID, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.2.1.10", apName, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.2.1.11", staBSSID, mac}.
+
+{vardef, "1.3.6.1.4.1.25506.2.75.3.2.1.10", staAPName, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.2.1.11", staBSSID, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.1.1.1.12", staSSIDName, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.2.1.7",    staSessionDuration, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.1.1.1.11", staVlanId, string}.
+{vardef, "1.3.6.1.4.1.25506.2.75.3.2.1.12",   staDisconnectReason, string}.
+
+%ac variables
+{vardef,"1.3.6.1.4.1.25506.2.75.1.3.1.3", switchInfo, string}.
+{vardef, "1: 1.3.6.1.4.1.2011.2.23.1.9.1.2.1.1", powerNum, integer}.
+
+{vardef, "1.3.6.1.4.1.25506.2.6.1.1.1.1.1", physicalIndex, integer}.
+{vardef, "1.3.6.1.4.1.25506.2.6.1.1.1.1.6", cpuUsage, string}.
+{vardef, "1.3.6.1.4.1.25506.2.6.1.1.1.1.7", cpuUsageThreshold, string}.
+{vardef, "1.3.6.1.4.1.25506.2.6.1.1.1.1.2", adminStatus, string}.
+{vardef, "1.3.6.1.4.1.25506.2.6.1.1.1.1.5", alarmLight, string}.
+
+{vardef, "1.3.6.1.4.1.25506.2.6.1.1.1.1.8",  memUsage, string}.
+{vardef, "1.3.6.1.4.1.25506.2.6.1.1.1.1.9",  memUsageThreshold, string}.
+{vardef, "1.3.6.1.4.1.25506.2.6.1.1.1.1.10", memSize, integer}.
+
+
+
+
+
+
+
+
