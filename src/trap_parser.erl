@@ -160,8 +160,8 @@ format(mac, Val) ->
     string:to_upper(trapd_misc:macaddr(Val));
 
 format(ip, Val) ->
-    trapd_misc:ipaddr(Val).
+    trapd_misc:ipaddr(Val);
 
 format(percent, V) when is_integer(V)->
-    integer_to_list(V div 100) ;
+    integer_to_list(V div 100).
 
