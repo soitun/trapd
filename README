@@ -1,4 +1,17 @@
-trapd
-=====
+# Trapd
 
-snmp trap daemon
+snmp trap daemon.
+
+# Commands 
+
+trapd_ctl status 
+
+trapd_ctl info 
+
+trapd_ctl received_trap 
+
+trapd_ctl emitted_trap 
+
+trapd_ctl dropped_trap 
+
+trapd_ctl  filtered_trap

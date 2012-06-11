@@ -12,7 +12,7 @@ VERSION=1.0
 DATE_OF_CREATION=2012-04-26
 AUTHOR="Ery Lee <ery.lee@gmail.com>"
 
-#amqp, FIX here
+#NOTICE: configure amqp here
 AMQP_HOST=localhost
 AMQP_VHOST=wifioss
 AMQP_USER=wifioss
