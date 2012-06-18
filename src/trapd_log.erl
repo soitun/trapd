@@ -65,7 +65,7 @@ handle_cast({log, filtered, Trap}, State) ->
 	TrapKey = lists:concat([TrapOid, "@", Addr]),
 	?INFO("~s is filtered.", [TrapKey]),
     case ets:lookup(filtered_trap, TrapKey) of
-    [{_, Count,}] ->
+    [{_, Count}] ->
         ets:insert(filtered_trap, {TrapKey, Count+1});
     [] ->
         ets:insert(filtered_trap, {TrapKey, 1})
