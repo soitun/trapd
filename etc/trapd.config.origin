@@ -16,7 +16,7 @@
 	{error_logger_redirect, false},
 	{crash_log, "log/trapd_crash.log"},
 	{handlers, [
-		{lager_console_backend, info},
+		%{lager_console_backend, info},
 		{lager_file_backend, [
 			{"log/trapd_info.log", info, 20485760, "$D0", 5},
 			{"log/trapd_error.log", error, 20485760, "$D0", 5}
