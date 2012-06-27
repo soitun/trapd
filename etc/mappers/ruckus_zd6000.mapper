@@ -256,13 +256,13 @@
 
 {mapper, "1.3.6.1.4.1.25053.3.1.2.46", powerOffTrap, [
 	{severity,	major}, 
-	{evtkey,    "powerOffTrap_$idx"},
+	{evtkey,    "powerOffTrap_$powerIndex"},
 	{summary,	"AC设备电源掉电告警"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.25053.3.1.2.71", powerOffTrap, [
 	{severity,	clear},
-	{evtkey,    "powerOffTrap_$idx"},
+	{evtkey,    "powerOffTrap_$powerIndex"},
 	{summary,	"AC设备电源掉电告警已清除"}
 ]}.
 
