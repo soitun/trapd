@@ -55,13 +55,27 @@ stats() ->
 emit(Event) ->
 	gen_server2:cast(?SERVER, {emit, Event}).
 
-init([]) ->
+init([Dir]) ->
 	put(received, 0),
 	put(emitted, 0),
 	{ok, Conn} = amqp:connect(),
     Channel = open(Conn),
     ?INFO("trapd is starting...[ok]", []),
+	ets:new(addr_mapping, [set, name_table]),
+	LoadFun = fun(File) ->
+        ?INFO("load addr_mapping file: ~p", [File]),
+		case file:consult(filename:join(Dir, File)) of
+			{ok, Terms} ->
+				lists:foreach(fun store/1, Terms);
+			{error, Reason} ->
+				?ERROR("Can't load addr_mapping file ~p : ~p", [File, Reason])
+		end
+	end,
+	lists:foreach(LoadFun, trap_misc:list_file(Dir, ".mapping")),
     {ok, #state{channel = Channel}}.
+
+store({SourceIp, DestIp}) ->
+	ets:insert(addr_mapping, {SourceIp, DestIp}).
 
 open(Conn) ->
 	{ok, Channel} = amqp:open_channel(Conn),
@@ -106,10 +120,17 @@ handle_cast({emit, #event{name = Name} = Event}, #state{channel = Chan} = State)
 handle_cast(Msg, State) ->
     {stop, {error, {badmsg, Msg}}, State}.
 
-handle_info({trap, Trap}, State) ->
+handle_info({trap, #trap2{addr = Addr} = Trap}, State) ->
 	put(received, get(received)+1),
-	trapd_log:log(received, Trap),
-	trap_parser:parse(Trap),
+	case ets:lookup(addr_mapping, Addr) of
+		[{_, DestIp}] -> 
+			NewTrap = Trap#trap2{addr = DestIp},
+			trapd_log:log(received, NewTrap),
+			trap_parser:parser(NewTrap);
+		[] ->
+			trapd_log:log(received, Trap),
+			trap_parser:parse(Trap)
+	end,
 	{noreply, State};
 
 handle_info({deliver, <<"ping">>, _, _}, #state{channel = Channel} = State) ->
