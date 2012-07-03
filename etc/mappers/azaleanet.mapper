@@ -137,8 +137,8 @@
 {mapper, "1.3.6.1.4.1.2162.4.3.8.4.20",  apMtRdoChanlChgTrap, [
 	{severity,	major}, 
 	{source,	{fitap, "$alarmNetworkUnitName"}},
-	{evtkey,    "apMtRdoChanlChgTrap_${alarmNetworkUnitName}, 当前信道: $currChannel, 原始信道: $originChannel"},
-	{summary,	"AP无线信道变更通告, AP标识: $alarmNetworkUnitName"}
+	{evtkey,    "apMtRdoChanlChgTrap_${alarmNetworkUnitName}"},
+	{summary,	"AP无线信道变更通告, AP标识: $alarmNetworkUnitName, 当前信道: $currChannel, 原始信道: $originChannel"}
 ]}.
 
 {mapper, "1.3.6.1.4.1.2162.4.3.8.4.21", staAuthErrorTrap, [
